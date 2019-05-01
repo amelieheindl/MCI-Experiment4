@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Städte-Quiz</title>
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+<link rel="stylesheet" type="text/css"
+	href="https://cdnjs.cloudflare.com/ajax/libs/pagePiling.js/1.5.6/jquery.pagepiling.css" />
+
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/pagePiling.js/1.5.6/jquery.pagepiling.js"></script>
+
+<link href="https://fonts.googleapis.com/css?family=Roboto"
+	rel="stylesheet">
+
+<script src="script.js"></script>
+<link href="style.css" rel="stylesheet">
+</head>
+<body>
+	<img src="logo2.png" id="logo">
+	<div id="pagepiling">
+		<div id="footer">Mit &#10084; gemacht in Stuttgart von Léon
+			Lazar & Amelie Heindl</div>
+		<div class="section">
+			<h1>Städte-Quiz</h1>
+			Regeln: In diesem Spiel geht es darum, zwischen Hauptstädten und
+			anderen Städten zu unterscheiden.<br> Dabei wird alle 2 bis 6
+			Sekunden eine neue Stadt auf dem Bildschirm angezeigt. <br> Wenn
+			es sich um eine Hauptstadt handelt, drücke die 'T'-Taste.<br>
+			Wenn es sich um eine Stadt handelt, die keien Hauptstadt ist, drücke
+			die 'F'-Taste.<br> Umso schneller du drückst, umso mehr Punkte
+			bekommst du.<br> Drückst du die falsche Taste oder drückst eine
+			Tatse, während keine Stadt angezeigt wird, werden Punkte abgezogen. <br>Viel
+			Spaß! <br>Bitte gib deinen Spielernamen ein:<br>
+			<form>
+				Spielername:<br> <input id="name" type="text" name="name"><br>
+			</form>
+			<br> Drücke die Leertaste, um fortzufahren.
+		</div>
+		<div class="section">
+			<h1>Level 1 - Deutschland</h1>
+			In diesem Level muss zwischen den Hauptstädten deutscher Bundesländer
+			<br> und anderen deutschen Städten unterschieden werden.<br>
+			Du brauchst mindestens 100 Punkte, um das Level zu bestehen. <br>
+			<br> <br> Drücke die Leertaste, wenn du bereit bist.<br>
+			<br>
+		</div>
+		<div class="section">
+			<h1 id="city1"></h1>
+			<div id="sumPoints1"></div>
+			<div class="bottom">
+				<span id="time1"></span> <span id="points1"></span>
+			</div>
+		</div>
+		<div class="section">
+			<h1>
+				<span id="head1"></span>
+			</h1>
+
+			Erreichte Punkte: <span id="level1points"></span> Punkte<br>
+			Deine Höchstpunktzahl: <span id="level1pointsMax"></span> Punkte<br>
+			<span id="comment1"></span> <br> <br> Drücke die Taste 1,
+			um Level 1 nochmal zu spielen.<br> <br> <br> <span
+				id="continue1"></span>
+		</div>
+		<div class="section">
+			<h1>Level 2 - Europa</h1>
+			In diesem Level muss zwischen den Hauptstädten europäischer Länder <br>
+			und anderen europäischen Städten unterschieden werden.<br> Du
+			brauchst mindestens 150 Punkte, um das Level zu bestehen. <br> <br>
+			<br> Drücke die Leertaste, wenn du bereit bist.<br> <br>
+		</div>
+		<div class="section">
+			<h1 id="city2"></h1>
+			<div id="sumPoints2"></div>
+			<div class="bottom">
+				<span id="time2"></span> <span id="points2"></span>
+			</div>
+		</div>
+		<div class="section">
+			<h1>
+				<span id="head2"></span>
+			</h1>
+
+			Erreichte Punkte: <span id="level2points"></span> Punkte<br>
+			Deine Höchstpunktzahl: <span id="level2pointsMax"></span> Punkte<br>
+			<span id="comment2"></span> <br> <br> Drücke die Taste 2,
+			um Level 2 nochmal zu spielen.<br> <br> <br> <span
+				id="continue2"></span>
+		</div>
+		<div class="section">
+			<h1>Level 3 - Erde</h1>
+			In diesem Level muss zwischen den Hauptstädten beliebiger Länder <br>
+			und anderen internationalen Städten unterschieden werden.<br> Du
+			brauchst mindestens 200 Punkte, um das Level zu bestehen. <br> <br>
+			<br> Drücke die Leertaste, wenn du bereit bist.<br> <br>
+		</div>
+		<div class="section">
+			<h1 id="city3"></h1>
+			<div id="sumPoints3"></div>
+			<div class="bottom">
+				<span id="time3"></span> <span id="points3"></span>
+			</div>
+		</div>
+		<div class="section">
+			<h1>
+				<span id="head3"></span>
+			</h1>
+			Erreichte Punkte: <span id="level3points"></span> Punkte<br>
+			Deine Höchstpunktzahl: <span id="level3pointsMax"></span> Punkte<br>
+			<br> <span id="comment3"></span> <br> <br> Drücke die
+			Taste 3, um Level 3 nochmal zu spielen.<br> <br> <br>
+			<span id="continue3"></span>
+		</div>
+		<div class="section">
+			<h1>Deine Ergebnisse:</h1>
+			Gesamtpunktzahl: <span id="sumPoints"></span> Punkte<br>
+			Höchstpunktzahl Level 1: <span id="results1pointsMax"></span> Punkte<br>
+			Höchstpunktzahl Level 2: <span id="results2pointsMax"></span> Punkte<br>
+			Höchstpunktzahl Level 3: <span id="results3pointsMax"></span> Punkte<br>
+			<br>
+			<div id="resultComment"></div>
+			<br>Danke für's mitspielen!
+		</div>
+	</div>
+</body>
+</html>
