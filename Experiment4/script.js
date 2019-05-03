@@ -1,6 +1,9 @@
 var state = 1;
 
 var name;
+var mode;
+var upperBound;
+var lowerBound;
 
 $(document).ready(
 	function () {
@@ -37,6 +40,17 @@ $(window).keypress(function (e) {
 			case 1:
 				if ($("input[name='name']").val() !== "") {
 					name = $("input[name='name']").val().trim();
+					mode = $("input[name='mode']:checked").val().trim();
+					if(mode == "schwer"){
+						upperBound = 700;
+						lowerBound = 500;
+					}else if(mode == "mittel"){
+						upperBound = 900;
+						lowerBound = 700;
+					}else{
+						upperBound = 1100;
+						lowerBound = 900;
+					}
 					$.fn.pagepiling.moveTo(2);
 					state = 2;
 				} else {
@@ -238,13 +252,13 @@ function handleKeyTLevel1() {
 		var currTime = new Date().getTime();
 		var deltaTime = currTime - lastStimTime;
 
-		if (deltaTime <= 600) {
+		if (deltaTime <= lowerBound) {
 			$("#time1").text(deltaTime + "ms");
 			$("#points1").text("Perfekt!   +15 Punkte");
 			$("#points1").css('color', 'green');
 			points1 = points1 + 15;
 			$("#sumPoints1").text(points1);
-		} else if (deltaTime <= 900) {
+		} else if (deltaTime <= upperBound) {
 			$("#time1").text(deltaTime + "ms");
 			$("#points1").text("Sehr gut!   +10 Punkte");
 			$("#points1").css('color', 'green');
@@ -281,13 +295,13 @@ function handleKeyFLevel1() {
 		var currTime = new Date().getTime();
 		var deltaTime = currTime - lastStimTime;
 
-		if (deltaTime <= 600) {
+		if (deltaTime <= lowerBound) {
 			$("#time1").text(deltaTime + "ms");
 			$("#points1").text("Perfekt!   +15 Punkte");
 			$("#points1").css('color', 'green');
 			points1 = points1 + 15;
 			$("#sumPoints1").text(points1);
-		} else if (deltaTime <= 900) {
+		} else if (deltaTime <= upperBound) {
 			$("#time1").text(deltaTime + "ms");
 			$("#points1").text("Sehr gut!   +10 Punkte");
 			$("#points1").css('color', 'green');
@@ -412,13 +426,13 @@ function handleKeyTLevel2() {
 		var currTime = new Date().getTime();
 		var deltaTime = currTime - lastStimTime;
 
-		if (deltaTime <= 600) {
+		if (deltaTime <= lowerBound) {
 			$("#time2").text(deltaTime + "ms");
 			$("#points2").text("Perfekt!   +15 Punkte");
 			$("#points2").css('color', 'green');
 			points2 = points2 + 15;
 			$("#sumPoints2").text(points2);
-		} else if (deltaTime <= 900) {
+		} else if (deltaTime <= upperBound) {
 			$("#time2").text(deltaTime + "ms");
 			$("#points2").text("Sehr gut!   +10 Punkte");
 			$("#points2").css('color', 'green');
@@ -455,13 +469,13 @@ function handleKeyFLevel2() {
 		var currTime = new Date().getTime();
 		var deltaTime = currTime - lastStimTime;
 
-		if (deltaTime <= 600) {
+		if (deltaTime <= lowerBound) {
 			$("#time2").text(deltaTime + "ms");
 			$("#points2").text("Perfekt!   +15 Punkte");
 			$("#points2").css('color', 'green');
 			points2 = points2 + 15;
 			$("#sumPoints2").text(points2);
-		} else if (deltaTime <= 900) {
+		} else if (deltaTime <= upperBound) {
 			$("#time2").text(deltaTime + "ms");
 			$("#points2").text("Sehr gut!   +10 Punkte");
 			$("#points2").css('color', 'green');
@@ -586,13 +600,13 @@ function handleKeyTLevel3() {
 		var currTime = new Date().getTime();
 		var deltaTime = currTime - lastStimTime;
 
-		if (deltaTime <= 600) {
+		if (deltaTime <= lowerBound) {
 			$("#time3").text(deltaTime + "ms");
 			$("#points3").text("Perfekt!   +15 Punkte");
 			$("#points3").css('color', 'green');
 			points3 = points3 + 15;
 			$("#sumPoints3").text(points3);
-		} else if (deltaTime <= 900) {
+		} else if (deltaTime <= upperBound) {
 			$("#time3").text(deltaTime + "ms");
 			$("#points3").text("Sehr gut!   +10 Punkte");
 			$("#points3").css('color', 'green');
@@ -629,13 +643,13 @@ function handleKeyFLevel3() {
 		var currTime = new Date().getTime();
 		var deltaTime = currTime - lastStimTime;
 
-		if (deltaTime <= 600) {
+		if (deltaTime <= lowerBound) {
 			$("#time3").text(deltaTime + "ms");
 			$("#points3").text("Perfekt!   +15 Punkte");
 			$("#points3").css('color', 'green');
 			points3 = points3 + 15;
 			$("#sumPoints3").text(points3);
-		} else if (deltaTime <= 900) {
+		} else if (deltaTime <= upperBound) {
 			$("#time3").text(deltaTime + "ms");
 			$("#points3").text("Sehr gut!   +10 Punkte");
 			$("#points3").css('color', 'green');
