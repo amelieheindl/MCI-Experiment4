@@ -3,117 +3,128 @@ var state = 1;
 var name;
 
 $(document).ready(
-		function() {
-			$('#pagepiling').pagepiling(
-					{
-						navigation : false,
-						sectionsColor : [ '#CE6D8B', '#525252', '#4056F4',
-								'#DF3B57', '#470FF4', '#CE6D8B', '#525252',
-								'#4056F4', '#DF3B57', '#470FF4', '#CE6D8B', '#525252',
-								'#4056F4', '#DF3B57', '#470FF4' ],
-						keyboardScrolling : false,
-						direction : 'horizontal',
-						easing : 'linear'
-					});
-			$.fn.pagepiling.setAllowScrolling(false);
-		});
+	function () {
+		$('#pagepiling').pagepiling(
+			{
+				navigation: false,
+				sectionsColor: ['#CE6D8B', '#525252', '#4056F4',
+					'#DF3B57', '#470FF4', '#CE6D8B', '#525252',
+					'#4056F4', '#DF3B57', '#470FF4', '#CE6D8B', '#525252',
+					'#4056F4', '#DF3B57', '#470FF4'],
+				keyboardScrolling: false,
+				direction: 'horizontal',
+				easing: 'linear'
+			});
+		$.fn.pagepiling.setAllowScrolling(false);
+	});
 
-$(window).keypress(function(e) {
+function shuffle(a) {
+	var j, x, i;
+	for (i = a.length - 1; i > 0; i--) {
+		j = Math.floor(Math.random() * (i + 1));
+		x = a[i];
+		a[i] = a[j];
+		a[j] = x;
+	}
+	return a;
+}
+
+$(window).keypress(function (e) {
 	if (e.which === 32) {
 
 		switch (state) {
 
-		case 1:
-			if ($("input[name='name']").val() !== "") {
-				name = $("input[name='name']").val().trim();
-				$.fn.pagepiling.moveTo(2);
-				state = 2;
-			} else {
-				alert("Bitte einen Spielernamen eingeben!");
-			}
-			break;
-		case 2:
-			$.fn.pagepiling.moveTo(3);
-			startLevel1();
-			state = 3;
-			break;
-		case 5:
-			$.fn.pagepiling.moveTo(6);
-			startLevel2();
-			state = 6;
-			break;
-		case 8:
-			$.fn.pagepiling.moveTo(9);
-			startLevel3();
-			state = 9;
-			break;
-		case 10:
-			if (maxPoints3 >= points3bound) {
-				$.fn.pagepiling.moveTo(11);
-				showResults();
-				state = 11;
-			}
-			break;
+			case 1:
+				if ($("input[name='name']").val() !== "") {
+					name = $("input[name='name']").val().trim();
+					$.fn.pagepiling.moveTo(2);
+					state = 2;
+				} else {
+					alert("Bitte einen Spielernamen eingeben!");
+				}
+				break;
+			case 2:
+				$.fn.pagepiling.moveTo(3);
+				startLevel1();
+				state = 3;
+				break;
+			case 5:
+				$.fn.pagepiling.moveTo(6);
+				startLevel2();
+				state = 6;
+				break;
+			case 8:
+				$.fn.pagepiling.moveTo(9);
+				startLevel3();
+				state = 9;
+				break;
+			case 10:
+				if (maxPoints3 >= points3bound) {
+					$.fn.pagepiling.moveTo(11);
+					showResults();
+					state = 11;
+				}
+				break;
 		}
 	} else if (e.which === 116) {
 		switch (state) {
-		case 3:
-			handleKeyTLevel1();
-			break;
-		case 6:
-			handleKeyTLevel2();
-			break;
-		case 9:
-			handleKeyTLevel3();
-			break;
+			case 3:
+				handleKeyTLevel1();
+				break;
+			case 6:
+				handleKeyTLevel2();
+				break;
+			case 9:
+				handleKeyTLevel3();
+				break;
 		}
 	} else if (e.which === 102) {
 		switch (state) {
-		case 3:
-			handleKeyFLevel1();
-			break;
-		case 6:
-			handleKeyFLevel2();
-			break;
-		case 9:
-			handleKeyFLevel3();
-			break;
+			case 3:
+				handleKeyFLevel1();
+				break;
+			case 6:
+				handleKeyFLevel2();
+				break;
+			case 9:
+				handleKeyFLevel3();
+				break;
 		}
 	} else if (e.which === 49) {
 		switch (state) {
-		case 4:
-			$.fn.pagepiling.moveTo(2);
-			state = 2;
-			break;
+			case 4:
+				$.fn.pagepiling.moveTo(2);
+				state = 2;
+				break;
 
 		}
 
 	} else if (e.which === 50) {
 		switch (state) {
-		case 4:
-			if (maxPoints1 >= points1bound) {
+			case 4:
+				if (maxPoints1 >= points1bound) {
+					$.fn.pagepiling.moveTo(5);
+					state = 5;
+				}
+				break;
+			case 7:
 				$.fn.pagepiling.moveTo(5);
 				state = 5;
-			}
-			break;
-		case 7:
-			$.fn.pagepiling.moveTo(5);
-			state = 5;
-			break;
+				break;
 		}
 
 	} else if (e.which === 51) {
 		switch (state) {
-		case 7:
-			if (maxPoints2 >= points2bound) {
+			case 7:
+				if (maxPoints2 >= points2bound) {
+					$.fn.pagepiling.moveTo(8);
+					state = 8;
+				}
+				break;
+			case 10:
 				$.fn.pagepiling.moveTo(8);
 				state = 8;
-			}
-			break;
-		case 10:
-			$.fn.pagepiling.moveTo(8);
-			state = 8;
-			break;
+				break;
 		}
 	}
 });
@@ -172,12 +183,14 @@ function startLevel1() {
 	types = getRandomBoolArray();
 	points1 = 0;
 	r = 0;
-	capitals1 = [ "Berlin", "Mainz", "Schwerin", "Kiel", "München", "Dresden",
-			"Bremen", "Wiesbaden", "Magdeburg", "Erfurt", "Stuttgart",
-			"Potsdam", "Hamburg", "Saarbrücken", "Hannover" ];
-	nonCapitals1 = [ "Frankfurt", "Leipzig", "Dortmund", "Essen", "Nürnberg",
-			"Karlsruhe", "Mannheim", "Augsburg", "Krefeld", "Darmstadt",
-			"Aachen", "Duisburg", "Bielefeld", "Chemnitz", "Rostock" ];
+	capitals1 = ["Berlin", "Mainz", "Schwerin", "Kiel", "München", "Dresden",
+		"Bremen", "Wiesbaden", "Magdeburg", "Erfurt", "Stuttgart",
+		"Potsdam", "Hamburg", "Saarbrücken", "Hannover"];
+	nonCapitals1 = ["Frankfurt", "Leipzig", "Dortmund", "Essen", "Nürnberg",
+		"Karlsruhe", "Mannheim", "Augsburg", "Krefeld", "Darmstadt",
+		"Aachen", "Duisburg", "Bielefeld", "Chemnitz", "Rostock"];
+	shuffle(capitals1);
+	shuffle(nonCapitals1);
 	$("#city1").text("");
 	$("#time1").text("");
 	$("#points1").text("");
@@ -311,19 +324,19 @@ function stopLevel1() {
 	if (maxPoints1 >= points1bound) {
 		$("#head1").text("Geschafft!");
 		$("#comment1")
-				.text(
-						"Sehr gut, "
-								+ name
-								+ "! Du hast genügend Punkte, um zu Level 2 vorzurücken.");
+			.text(
+				"Sehr gut, "
+				+ name
+				+ "! Du hast genügend Punkte, um zu Level 2 vorzurücken.");
 		$("#continue1").text(
-				"Oder drücke die Taste 2, um zu Level 2 zu gelangen.");
+			"Oder drücke die Taste 2, um zu Level 2 zu gelangen.");
 	} else {
 		$("#head1").text("Game over!");
 		$("#comment1")
-				.text(
-						"Schade, "
-								+ name
-								+ "! Du hast nicht genügend Punkte, um zu Level 2 vorzurücken.");
+			.text(
+				"Schade, "
+				+ name
+				+ "! Du hast nicht genügend Punkte, um zu Level 2 vorzurücken.");
 	}
 
 	state = 4;
@@ -344,12 +357,14 @@ function startLevel2() {
 	types = getRandomBoolArray();
 	points2 = 0;
 	r = 0;
-	capitals2 = [ "Lissabon", "Paris", "Brüssel", "Sarajevo", "Helsinki",
-			"Zagreb", "Sofia", "Andorra la Vella", "Tallinn", "Ljubljana",
-			"Oslo", "Reykjavik", "Prag", "Athen", "Bern" ];
-	nonCapitals2 = [ "Dortmund", "Rotterdam", "Lagos", "Bergen", "Salzburg",
-			"Turin", "Lyon", "Zürich", "Antwerpen", "Manchester", "Glasgow",
-			"Marseille", "Mailand", "Barcelona", "Frankfurt" ];
+	capitals2 = ["Lissabon", "Paris", "Brüssel", "Sarajevo", "Helsinki",
+		"Zagreb", "Sofia", "Andorra la Vella", "Tallinn", "Ljubljana",
+		"Oslo", "Reykjavik", "Prag", "Athen", "Bern"];
+	nonCapitals2 = ["Dortmund", "Rotterdam", "Lagos", "Bergen", "Salzburg",
+		"Turin", "Lyon", "Zürich", "Antwerpen", "Manchester", "Glasgow",
+		"Marseille", "Mailand", "Barcelona", "Frankfurt"];
+	shuffle(capitals2);
+	shuffle(nonCapitals2);
 	$("#city2").text("");
 	$("#time2").text("");
 	$("#points2").text("");
@@ -483,19 +498,19 @@ function stopLevel2() {
 	if (maxPoints2 >= points2bound) {
 		$("#head2").text("Geschafft!");
 		$("#comment2")
-				.text(
-						"Sehr gut, "
-								+ name
-								+ "! Du hast genügend Punkte, um zu Level 3 vorzurücken.");
+			.text(
+				"Sehr gut, "
+				+ name
+				+ "! Du hast genügend Punkte, um zu Level 3 vorzurücken.");
 		$("#continue2").text(
-				"Oder drücke die Taste 3, um zu Level 3 zu gelangen.");
+			"Oder drücke die Taste 3, um zu Level 3 zu gelangen.");
 	} else {
 		$("#head2").text("Game over!");
 		$("#comment2")
-				.text(
-						"Schade, "
-								+ name
-								+ "! Du hast nicht genügend Punkte, um zu Level 3 vorzurücken.");
+			.text(
+				"Schade, "
+				+ name
+				+ "! Du hast nicht genügend Punkte, um zu Level 3 vorzurücken.");
 	}
 
 	state = 7;
@@ -516,12 +531,14 @@ function startLevel3() {
 	types = getRandomBoolArray();
 	points3 = 0;
 	r = 0;
-	capitals3 = ["Brüssel","London", "Berlin", "Kairo", "Buenos Aires", "Canberra", "Manama", "Peking",
-			"Jakarta", "Ottawa", "Nursultan", "Seoul", "Washington, D.C.",
-			"Kuala Lumpur", "Neu-Delhi", "Kinshasa", "Mexiko-Stadt", "Bagdad" ];
-	nonCapitals3 = ["Kalkutta","Johannesburg", "Miami","Mumbai", "Shanghai", "New York", "Sao Paulo", "Toronto",
-			"Istanbul", "Sydney", "Dubai", "Casablanca", "San Antonio", "Mekka",
-			"Alexandria", "Rio de Janeiro", "Krakau", "Sankt Petersburg" ];
+	capitals3 = ["Brüssel", "London", "Berlin", "Kairo", "Buenos Aires", "Canberra", "Manama", "Peking",
+		"Jakarta", "Ottawa", "Nursultan", "Seoul", "Washington, D.C.",
+		"Kuala Lumpur", "Neu-Delhi", "Kinshasa", "Mexiko-Stadt", "Bagdad"];
+	nonCapitals3 = ["Kalkutta", "Johannesburg", "Miami", "Mumbai", "Shanghai", "New York", "Sao Paulo", "Toronto",
+		"Istanbul", "Sydney", "Dubai", "Casablanca", "San Antonio", "Mekka",
+		"Alexandria", "Rio de Janeiro", "Krakau", "Sankt Petersburg"];
+	shuffle(capitals3);
+	shuffle(nonCapitals3);
 	$("#city3").text("");
 	$("#time3").text("");
 	$("#points3").text("");
@@ -653,11 +670,11 @@ function stopLevel3() {
 	$("#level3pointsMax").text(maxPoints3);
 
 	state = 10;
-	$.fn.pagepiling.moveTo(10); 
-	
+	$.fn.pagepiling.moveTo(10);
+
 	if (maxPoints3 >= points3bound) {
 		$("#head3").text("Geschafft!");
-		$("#comment3").text("Herzlichen Glückwunsch, " + name+ "! Du hast alle Level bestanden.");
+		$("#comment3").text("Herzlichen Glückwunsch, " + name + "! Du hast alle Level bestanden.");
 		$("#continue3").text("Drücke die Leertaste, um deine Ergebnisse zu sehen.");
 	} else {
 		$("#head3").text("Game over!");
@@ -669,11 +686,11 @@ function stopLevel3() {
 
 //Results
 
-function showResults(){
-	$("#sumPoints").text(maxPoints1+maxPoints2+maxPoints3);
+function showResults() {
+	$("#sumPoints").text(maxPoints1 + maxPoints2 + maxPoints3);
 	$("#results1pointsMax").text(maxPoints1);
 	$("#results2pointsMax").text(maxPoints2);
 	$("#results3pointsMax").text(maxPoints3);
-	$("#resultComment").text("Gut gemacht, "+name+"!");
+	$("#resultComment").text("Gut gemacht, " + name + "!");
 
 }

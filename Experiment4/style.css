@@ -1,7 +1,7 @@
 body {
-	font-size: x-large;
-	font-family: 'Roboto', sans-serif;
-	color: white;
+    font-size: x-large;
+    font-family: 'Roboto', sans-serif;
+    color: white;
 }
 
 input {
@@ -10,19 +10,61 @@ input {
 	font-size: x-large;
 }
 
+
 button {
-	font-size: x-large;
+    font-size: x-large;
 }
 
 .section {
-	text-align: center;
+    text-align: center;
+}
+
+.radios input[type="radio"] {
+    width: 15px;
+}
+
+.radios label {
+    display: inline;
+    margin-left: 5px;
 }
 
 .bottom {
-	position: absolute;
-	bottom: 50px;
-	text-align: center;
-	width: 100%;
+    position: absolute;
+    bottom: 50px;
+    text-align: center;
+    width: 100%;
+}
+
+#animal {
+    font-size: 100px;
+}
+
+#header, #footer {
+    position:fixed;
+    display:block;
+    padding: 2px;
+    width: 100%;
+    background: #4c4c4c;
+    z-index:1000;
+    text-align:center;
+    color: #000;
+    opacity: 0.6;
+    color: white;
+}
+
+#header {
+    top:0px;
+}
+#footer {
+    bottom:0px;
+}
+
+#logo {
+    position: absolute;
+	top: 16px;
+    left: 16px;
+    width: 20%;
+    z-index: 999;
 }
 
 #sumPoints1, #sumPoints2, #sumPoints3 {
@@ -38,32 +80,4 @@ button {
 	position: fixed;
 	display: block;
 	padding: 2px;
-}
-
-#header, #footer {
-	position: fixed;
-	display: block;
-	padding: 2px;
-	width: 100%;
-	background: #ccc;
-	z-index: 1000;
-	text-align: center;
-	color: #000;
-	opacity: 0.6;
-}
-
-#header {
-	top: 0px;
-}
-
-#footer {
-	bottom: 0px;
-}
-
-#logo {
-	position: absolute;
-	top: 16px;
-	left: 16px;
-	width: 20%;
-	z-index: 999;
 }
